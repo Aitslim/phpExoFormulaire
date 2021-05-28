@@ -36,7 +36,7 @@
                     <label for="phone" class="form-label mt-4">Numéro de téléphone : </label>
                     <input type="tel" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="0123456789" required="">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="date" class="form-label mt-4">Date d'achat : </label>
                     <input type="date" name="date" class="form-control" id="date" aria-describedby="dateHelp" placeholder="01/01/2021">
                 </div>
@@ -99,7 +99,7 @@
                     <label class="form-check-label" for="recall">
                         Cochez-cette case si vous acceptez d'être rappelé.
                     </label>
-                </div>
+                </div> -->
                 <button type="submit" class="btn btn-primary mt-5">Submit</button>
             </fieldset>
         </form>
