@@ -20,35 +20,40 @@
     <div class="container">
 
         <h1> Amazin</h1>
-
+        <?php echo "Isset err = " . isset($err);
+        echo "<br>";
+        echo "Isset lastname = " . isset($err["lastname"]);
+        // echo "Isset lastname = " . $err["lastname"];
+        ?>
         <form class="mb-5" method="POST" action="index.php">
             <fieldset>
                 <legend>Formulaire de satisfaction</legend>
-                <div class="form-group">
+                <div class="form-group has-danger">
                     <label for="lastname" class="form-label mt-2">Nom : </label>
-                    <input type="text" name="lastname" class="form-control" id="lastname" aria-describedby="lastnameHelp" value="" placeholder="Enter votre nom" required="">
-                    <!-- <p id="lastnameHelp"> Info sur la zone de saisie.</p> -->
+                    <input type="text" name="lastname" class="form-control <?php echo (isset($err["lastname"])) ? 'is-invalid' : '' ?>" id="lastname" aria-describedby="lastnameHelp" value="<?php echo ($_POST) ? $_POST["lastname"] : "" ?>" placeholder="Enter votre nom" required="">
+                    <div class="invalid-feedback"><?php echo (isset($err["lastname"])) ? 'Veuillez entrer un nom complet' : '' ?></div>
                 </div>
-
                 <div class="form-group">
                     <label for="firstname" class="form-label mt-2">Prénom : </label>
-                    <input type="text" name="firstname" class="form-control" id="firstname" aria-describedby="firstnameHelp" placeholder="Enter votre prénom" required="">
+                    <input type="text" name="firstname" class="form-control <?php echo (isset($err["firstname"])) ? 'is-invalid' : '' ?>" id="firstname" aria-describedby="firstnameHelp" value="<?php echo ($_POST) ? $_POST["firstname"] : "" ?>" placeholder="Enter votre prénom" required="">
+                    <div class="invalid-feedback">Veuillez entrer un Prénom complet</div>
                 </div>
 
                 <div class="form-group">
                     <label for="phone" class="form-label mt-2">Numéro de téléphone : </label>
-                    <input type="tel" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="0123456789" required="">
+                    <input type="tel" name="phone" class="form-control <?php echo (isset($err["phone"])) ? 'is-invalid' : '' ?>" id="phone" aria-describedby="phoneHelp" value="<?php echo ($_POST) ? $_POST["phone"] : "" ?>" placeholder="0123456789" required="">
+                    <div class="invalid-feedback">Veuillez entrer un N° de téléphone valide</div>
                 </div>
+
                 <div class="form-group">
                     <label for="date" class="form-label mt-2">Date d'achat : </label>
-                    <input type="date" name="date" class="form-control" id="date" aria-describedby="dateHelp" placeholder="01/01/2021">
+                    <input type="date" name="date" class="form-control" id="date" aria-describedby="dateHelp" value="<?php echo ($_POST) ? $_POST["date"] : "" ?>" placeholder="01/01/2021">
                 </div>
                 <legend class="mt-2">L'agent a-t-il été agréable ?</legend>
                 <div class="form-check">
                     <label class="form-check-label">
                         <input type="radio" class="form-check-input" name="question1" id="optionsRadios1" value="2" required="">
-                        Oui
-                    </label>
+                        Oui</label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -58,15 +63,13 @@
                 <div class="form-check">
                     <label class="form-check-label">
                         <input type="radio" class="form-check-input" name="question1" id="optionsRadios3" value="1" required="">
-                        sans avis
-                    </label>
+                        sans avis</label>
                 </div>
                 <legend class="mt-2">L'agent a-t-il compris votre problème</legend>
                 <div class="form-check">
                     <label class="form-check-label">
                         <input type="radio" class="form-check-input" name="question2" id="optionsRadios1" value="2" required="">
-                        Oui
-                    </label>
+                        Oui</label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -76,15 +79,13 @@
                 <div class="form-check">
                     <label class="form-check-label">
                         <input type="radio" class="form-check-input" name="question2" id="optionsRadios3" value="1" required="">
-                        sans avis
-                    </label>
+                        sans avis</label>
                 </div>
                 <legend class="mt-2">L'agent a-t-il résolu votre problème ?</legend>
                 <div class="form-check">
                     <label class="form-check-label">
                         <input type="radio" class="form-check-input" name="question3" id="optionsRadios1" value="1" required="">
-                        Oui
-                    </label>
+                        Oui</label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -100,8 +101,7 @@
                 <div class="form-check">
                     <input name="recall" class="form-check-input" type="checkbox" value="true" id="recall">
                     <label class="form-check-label" for="recall">
-                        Cochez-cette case si vous acceptez d'être rappelé.
-                    </label>
+                        Cochez-cette case si vous acceptez d'être rappelé.</label>
                 </div>
                 <button type="submit" class="btn btn-primary mt-5">Submit</button>
             </fieldset>
