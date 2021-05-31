@@ -1,25 +1,18 @@
 <?php
 
-// var_dump($_POST);
-echo "<br>";
 $erreur = false;
 $err = array();
 
 if (!$_POST) {
-    echo "Afficher le formulaire" . "<br>";
-    echo "<br>";
+    echo "1re fois : afficher le formulaire" . "<br>";
     require "view/leFormulaire.php";
 } else {
     $err = array();
     $erreur = ControleForm($_POST, $err);
     if ($erreur) {
-        // $err["phone"] = "toto";
         echo "Retour au formulaire. Il y a des erreur " . "<br>";
-        var_dump($err);
-        echo "<br>";
         require "view/leFormulaire.php";
     } else {
-        echo  "<br>" . "Pas d'erreur" . "<br>";
         echo "Afficher la validation du formulaire" . "<br>";
         require "view/viewfinale.php";
     }
@@ -36,7 +29,7 @@ function ControleForm(array $poste, &$err)
         $err["firstname"] = "toto";
         $resultat = true;
     }
-    if (!is_numeric($poste["phone"])) {
+    if (!is_numeric($poste["phone"]) || strlen(trim($poste["phone"])) != 10) {
         $err["phone"] = "toto";
         $resultat = true;
     }
