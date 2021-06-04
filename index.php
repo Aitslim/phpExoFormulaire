@@ -1,37 +1,30 @@
 <?php
 
-$erreur = false;
-$err = array();
+$erreur = [];
 
 if (!$_POST) {
-    echo "1re fois : afficher le formulaire" . "<br>";
     require "view/leFormulaire.php";
 } else {
-    $err = array();
-    $erreur = ControleForm($_POST, $err);
+
+    $erreur = ControleForm($_POST);
     if ($erreur) {
-        echo "Retour au formulaire. Il y a des erreur " . "<br>";
         require "view/leFormulaire.php";
     } else {
-        echo "Afficher la validation du formulaire" . "<br>";
         require "view/viewfinale.php";
     }
 }
 
-function ControleForm(array $poste, &$err)
+function ControleForm(array $poste): array
 {
-    $resultat = false;
+    $erreur = [];
     if (strlen($poste["lastname"]) <= 2) {
-        $err["lastname"] = "toto";
-        $resultat = true;
+        $erreur["lastname"] = "Veuillez entrer un Nom complet";
     }
     if (strlen($poste["firstname"]) <= 2) {
-        $err["firstname"] = "toto";
-        $resultat = true;
+        $erreur["firstname"] = "Veuillez entrer un Prénom complet";
     }
     if (!is_numeric($poste["phone"]) || strlen(trim($poste["phone"])) != 10) {
-        $err["phone"] = "toto";
-        $resultat = true;
+        $erreur["phone"] = "Veuillez entrer un N° de téléphone valide";
     }
-    return $resultat;
+    return $erreur;
 }
